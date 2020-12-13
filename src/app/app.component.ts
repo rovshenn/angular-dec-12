@@ -7,9 +7,9 @@ import { Component, OnInit, VERSION } from "@angular/core";
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent {
+  private boxIds = [1, 2, 3];
+
   ngAfterViewInit(): void {
-    // init animation
-    // [1, 2, 3].forEach(id => this.animate(id.toString(), 3000 * id));
     this.animate();
   }
 
@@ -25,10 +25,10 @@ export class AppComponent {
     el.style.top = timePassed / moveThrottle / diagonalSlope + moveUnits;
   }
 
+  // credits to https://javascript.info/js-animation
   private animate(delay = 20) {
-    //boxId: string, animationLimit = 6000,
     let start = Date.now();
-    const idToDelay = [1, 2, 3].map(boxId => ({
+    const idToDelay = this.boxIds.map(boxId => ({
       boxId,
       animationLimit: 3000 * boxId
     }));
